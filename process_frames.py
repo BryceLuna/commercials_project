@@ -14,7 +14,7 @@ import numpy as np
 import multiprocessing
 from os import listdir
 from os.path import join
-import pdb
+#import pdb
 
 script,source,destination,POOL_SIZE, pct_frames = argv
 POOL_SIZE = int(POOL_SIZE)
@@ -28,11 +28,11 @@ def get_frame_parallel(pool_size):
 
 def write_path(file_str,count):
     name = file_str.split('/')[-1].split('.')[0]
-    pdb.set_trace()
-    return join(destination, name + '_' + str(count) + '.png' )
+    #pdb.set_trace()
+    return join(destination, name + '_' + str(count) + '.jpeg' )
 
 
-#should you assert pcnt_frames is a float <1
+#should you assert pcnt_frames is a (float < 1)
 def get_frames(file_str):
     vid = cv2.VideoCapture(file_str)
 
@@ -42,17 +42,18 @@ def get_frames(file_str):
 
         count = 0
         while count <= frame_count:
-            pdb.set_trace()
+            #pdb.set_trace()
             w_path = write_path(file_str,count)
             vid.set(cv2.cv.CV_CAP_PROP_POS_FRAMES,count)
             ret, frame = vid.read()
             cv2.imwrite(w_path,frame)
             count+=step_size
-        #Do you need to close the VideoCapture?
+        vid.release()
     else:
-        return 'could not open file'
+        return 'could not open file' #should issue and error
 
 
 
 if __name__ == '__main__':
-    get_frames('data/Tide.mp4')
+    #get_frames('data/Tide.mp4')
+    get_frame_parallel(POOL_SIZE)
