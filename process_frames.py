@@ -16,17 +16,14 @@ from os import listdir
 from os.path import join
 #import pdb
 
-script,source,destination,POOL_SIZE, pct_frames = argv
-POOL_SIZE = int(POOL_SIZE)
-pct_frames = float(pct_frames)
-file_lst = [ join(source,f) for f in listdir(source) ] #there should only be file, not folders
-
-def get_frame_parallel(pool_size):
-    pool = multiprocessing.Pool(pool_size)
-    pool.map(get_frames,file_lst)
 
 
 def write_path(file_str,count):
+    '''
+    string,int => string
+    This function takes in the video file path and returns
+    the destination path a frame from that video will be written to
+    '''
     name = file_str.split('/')[-1].split('.')[0]
     #pdb.set_trace()
     return join(destination, name + '_' + str(count) + '.jpeg' )
@@ -34,14 +31,20 @@ def write_path(file_str,count):
 
 #should you assert pcnt_frames is a (float < 1)
 def get_frames(file_str):
+    '''
+    string => None
+    This function takes in the source of a video, samples from
+    the video and writes those samples to a folder
+    '''
     vid = cv2.VideoCapture(file_str)
+
+    #Probably want a try except and issue an error if it doesn't work
 
     if vid.isOpened():
         frame_count = int(vid.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT))
         step_size = int(1/float(pct_frames))
 
-        count = 0
-        while count <= frame_count:
+        for count in xrange(0,frame_count,step_size):
             #pdb.set_trace()
             w_path = write_path(file_str,count)
             vid.set(cv2.cv.CV_CAP_PROP_POS_FRAMES,count)
@@ -50,10 +53,20 @@ def get_frames(file_str):
             count+=step_size
         vid.release()
     else:
-        return 'could not open file' #should issue and error
+        return 'error'
 
 
 
 if __name__ == '__main__':
-    #get_frames('data/Tide.mp4')
-    get_frame_parallel(POOL_SIZE)
+    script, source, destination,POOL_SIZE, pct_frames = argv #look into a try except here
+    pool_size = int(POOL_SIZE)
+    pct_frames = float(pct_frames)
+    #there should only be only files in here not folders or anything else
+    #also was there was a hidden file in max .DS_ that I had to delete
+    file_lst = [ join(source,f) for f in listdir(source) ]
+
+    # for file_ in file_lst:
+    #     get_frames(file_)
+
+    pool = multiprocessing.Pool(pool_size)
+    pool.map(get_frames,file_lst)
