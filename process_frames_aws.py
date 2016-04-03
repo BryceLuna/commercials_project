@@ -11,7 +11,6 @@ markov chain state change?
 from sys import argv
 import cv2
 import numpy as np
-import multiprocessing
 from os import listdir
 from os.path import join
 import time
@@ -63,15 +62,12 @@ def get_frames(file_str):
 
 if __name__ == '__main__':
     script, source, destination, pct_frames = argv #look into a try except here
-    #pool_size = int(POOL_SIZE)
     pct_frames = float(pct_frames)
     #there should only be only files in here not folders or anything else
     #also was there was a hidden file in max .DS_ that I had to delete
     file_lst = [ join(source,f) for f in listdir(source) ]
-    
+
     for file_ in file_lst:
         get_frames(file_)
 
-    # pool = multiprocessing.Pool(pool_size)
-    # pool.map(get_frames,file_lst)
     print("--- %s seconds ---" % (time.time() - start_time))
