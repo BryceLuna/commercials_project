@@ -29,6 +29,7 @@ def write_path(file_str,count):
     '''
     name = file_str.split('/')[-1].split('.')[0]
     #pdb.set_trace()
+    #note that you didn't pass in destination
     return join(destination, name + '_' + str(count) + '.jpeg' )
 
 
