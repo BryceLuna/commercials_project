@@ -8,7 +8,7 @@ import argparse
 import numpy as np
 from os import listdir
 from os.path import join
-import pdb
+#import pdb
 
 def write_path(file_str):
     '''
@@ -17,7 +17,7 @@ def write_path(file_str):
     the path in which to write the image
     '''
     name = file_str.split('/')[-1].split('.')[0]
-    pdb.set_trace()
+    #pdb.set_trace()
     return join(destination, name + '_' + dim_str + '.jpeg' )
 
 
@@ -28,7 +28,7 @@ def resize_img(file_str):
     '''
     w_path = write_path(file_str)
     image = cv2.imread(file_str)
-    pdb.set_trace()
+    #pdb.set_trace()
     resized = cv2.resize(image, dim, interpolation = cv2.INTER_AREA)
     cv2.imwrite(w_path,resized)
 
