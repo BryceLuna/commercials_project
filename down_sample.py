@@ -5,7 +5,6 @@ Might want to do this for two folders at a time
 
 import cv2
 import argparse
-#from sys import argv
 import numpy as np
 from os import listdir
 from os.path import join

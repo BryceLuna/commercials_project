@@ -1,6 +1,5 @@
 
 import numpy as np
-import cPickle as pickle
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.convolutional import Convolution2D, MaxPooling2D
@@ -10,9 +9,7 @@ import load_data as ld
 
 #loading commercial and tv images
 #note you have to pass in commercials first and then shows
-#X, y = ld.get_data('commercials_rescaled','shows_rescaled')
-data = pickle.load(open("save.p",'rb'))
-X,y = data[0],data[1]
+X, y = ld.get_data('commercials_rescaled','shows_rescaled')
 
 X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=.2,random_state=42)
 
