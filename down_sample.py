@@ -1,5 +1,6 @@
 '''
 To shrink an image, it will generally look best with CV_INTER_AREA interpolation
+Might want to do this for two folders at a time
 '''
 
 import cv2
@@ -24,13 +25,13 @@ def write_path(file_str):
 def resize_img(file_str):
     '''
     string => None
-
     '''
     w_path = write_path(file_str)
     image = cv2.imread(file_str)
     #pdb.set_trace()
-    resized = cv2.resize(image, dim, interpolation = cv2.INTER_AREA)
-    cv2.imwrite(w_path,resized)
+    if image is not None: #should maybe filder non images earlier on
+        resized = cv2.resize(image, dim, interpolation = cv2.INTER_AREA)
+        cv2.imwrite(w_path,resized)
 
 
 if __name__ == '__main__':
