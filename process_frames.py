@@ -1,24 +1,14 @@
 '''
-Notes:
-Probably want to parallelize this code
-refer to the open cv example files
-you also Probably want a parameter for the size of image
-and the resolution although you could downsample after
-
-Bayesian update
-markov chain state change?
+TODO:
+Parallelize code - refer to the open cv example files
+Make sampling more modular
 '''
+
 from sys import argv
 import cv2
 import numpy as np
 from os import listdir
 from os.path import join
-import time
-
-#import pdb
-
-start_time = time.time()
-
 
 
 def write_path(file_str,count):
@@ -28,12 +18,9 @@ def write_path(file_str,count):
     the destination path a frame from that video will be written to
     '''
     name = file_str.split('/')[-1].split('.')[0]
-    #pdb.set_trace()
-    #note that you didn't pass in destination
     return join(destination, name + '_' + str(count) + '.jpeg' )
 
 
-#should you assert pcnt_frames is a (float < 1)
 def get_frames(file_str):
     '''
     string => None
@@ -47,7 +34,6 @@ def get_frames(file_str):
         step_size = int(1/float(pct_frames))
 
         for count in xrange(0,frame_count,step_size):
-            #pdb.set_trace()
             w_path = write_path(file_str,count)
             vid.set(cv2.cv.CV_CAP_PROP_POS_FRAMES,count)
             ret, frame = vid.read()
@@ -57,12 +43,10 @@ def get_frames(file_str):
     else:
         print 'unable to open file: {}'.format(file_str)
 
-    return None
-
 
 
 if __name__ == '__main__':
-    script, source, destination, pct_frames = argv #look into a try except here
+    script, source, destination, pct_frames = argv #use argparse
     pct_frames = float(pct_frames)
     #there should only be only files in here not folders or anything else
     #also was there was a hidden file in max .DS_ that I had to delete
@@ -71,4 +55,4 @@ if __name__ == '__main__':
     for file_ in file_lst:
         get_frames(file_)
 
-    print("--- %s seconds ---" % (time.time() - start_time))
+
