@@ -1,15 +1,9 @@
-import numpy as np
 import argparse
-import json
 from keras.models import Sequential
-from keras.layers.core import Dense, Dropout, Activation, Flatten
-from keras.layers.convolutional import Convolution2D, MaxPooling2D
-from keras.layers.advanced_activations import LeakyReLU
 from sklearn.metrics import classification_report
 import load_data as ld
 from keras.models import model_from_json
 import cPickle as pickle
-
 
 
 def load_model(model_path,weights_path):
@@ -24,6 +18,7 @@ def load_test_data(path):
     return data['X_test'],data['Y_test']
 
 def score_model(model,X_test,y_test):
+    #classification report takes in lists
     y_pred = list(model.predict_classes(X_test))
     y_test = list(y_test)
     print classification_report(y_test,y_pred)
