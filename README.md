@@ -14,7 +14,7 @@ Could a computer model differentiate between television commercials and shows?  
 
 ![Image](/images/show_commercials.jpg)
 
-Could you pick out which images are commercials and which are television shows?  The sequence alternates commercial-show starting with an image of a commercial on the left.
+Could you pick out which images are commercials and which are television shows?  From let to right: show, commercial, commercial, show.
 
 ## Convolutional Neural Network Model
 Why use a CNN for this task instead of a vector or tree based method?  CNNs are the most flexible tool for image recognition.  They exhibit properties such as translational invariance that make them well suited for this classification task.
