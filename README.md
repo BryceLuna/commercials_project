@@ -3,7 +3,7 @@ Could a computer model differentiate between television commercials and shows?  
 
 ## Table of Contents
 1. [Data](#the-data)
-2. [CNN Model](#cnn-model)
+2. [Convolutional Neural Network Model](#convolutional-neural-network-model)
   * [Training](#training)
   * [Architecture](#architecture)
   * [Results](#results)
@@ -14,15 +14,20 @@ Could a computer model differentiate between television commercials and shows?  
 
 ![Image](/images/show_commercials.jpg)
 
-Could you pick out which are commercials and which are television shows?
-## CNN Model
-TBD
+Could you pick out which images are commercials and which are television shows?  The sequence alternates commercial-show starting with an image of a commercial on the left.
+
+## Convolutional Neural Network Model
+Why use a CNN for this task instead of a vector or tree based method?  CNNs are the most flexible tool for image recognition.  They exhibit properties such as translational invariance that make them well suited for this classification task.
+
 ### Training
-TBD
+The training of the model was accomplished with Keras and Theano on an AWS GPU instance.
+
 ### Architecture
-TBD
+
 ### Results
 TBD
 ## Next Steps
 - Experiment with optical flow
 - Experiment with transfer learning
+- Segment images
+- Transition to tensor flow (distributed training)
