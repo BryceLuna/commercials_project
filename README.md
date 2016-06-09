@@ -10,7 +10,9 @@ Could a computer model differentiate between television commercials and shows?  
 3. [Next Steps](#next-steps)
 
 ## Data
-80 clips of television shows and 200 commercials were scrapped from Youtube.  A total of 60,000 images were extracted from the videos and used to train the neural network.  Below are some example images of frames taken from the videos.  
+80 clips of television shows and 200 commercials were scrapped from Youtube.  A total of 60,000 images - 25K commercial frames and 35K television - were extracted from the videos and used to train the neural network.  Below are some example images of frames taken from the videos.  
+
+![Image](/images/show_commercials.jpg)
 
 Could you pick out which are commercials and which are television shows?
 ## CNN Model
