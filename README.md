@@ -35,7 +35,7 @@ Layers in the squential CNN model are listed below with additional details.
 Additional detail of the model architecture can be found in the file: model_baseline_reg.py
 
 ### Results
-The model results were incouraging.  The test accuracy and recall rate were 95%.
+The model results were encouraging.  The test accuracy and recall rate were 95%.
 
 ## Next Steps
 - Try and capture time related features with optical flow
